@@ -63,6 +63,7 @@ QWaylandEglWindow::QWaylandEglWindow(QWindow *window)
     , m_contentFBO(0)
     , m_resize(false)
     , m_format(window->requestedFormat())
+    , m_needsSwap(false)
 {
     setGeometry(window->geometry());
 }
@@ -100,6 +101,7 @@ void QWaylandEglWindow::setGeometry(const QRect &rect)
             mOffset = QPoint();
 
             m_resize = true;
+            m_needsSwap = true;
         }
     } else {
         m_waylandEglWindow = wl_egl_window_create(object(), sizeWithMargins.width(), sizeWithMargins.height());
