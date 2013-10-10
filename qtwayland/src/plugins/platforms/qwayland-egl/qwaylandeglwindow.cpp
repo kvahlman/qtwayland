@@ -136,6 +136,7 @@ EGLSurface QWaylandEglWindow::eglSurface() const
 
         EGLNativeWindowType window = (EGLNativeWindowType) m_waylandEglWindow;
         m_eglSurface = eglCreateWindowSurface(m_eglIntegration->eglDisplay(), m_eglConfig, window, 0);
+        eglSurfaceAttrib(m_eglIntegration->eglDisplay(), m_eglSurface, EGL_SWAP_BEHAVIOR, EGL_BUFFER_PRESERVED);
     }
 
     return m_eglSurface;
